@@ -13,8 +13,9 @@ print(str(int_array))
 
 string = "1234"
 # 字符串转化为字符数组
-print(list(string))
-# 字符串转化为int数组 TODO
+print(list(string))  # ['1', '2', '3', '4']
+# 字符串转化为int数组
+print(list(map(int, string)))  # [1, 2, 3, 4]
 
 # 格式化输出 5123.00
 print("%.2f" % 5123)
