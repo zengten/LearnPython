@@ -1,5 +1,7 @@
 import numpy
 import webbrowser
+import requests
+import json
 
 # 安装导入numpy包  pip install numpy
 print(numpy.version.version)  # 1.24.3
@@ -21,3 +23,21 @@ url_lists = [
 # 使用 webbrowser 可以直接打开电脑默认浏览器新窗口
 for url in url_lists:
     webbrowser.open_new_tab(url)
+
+# 不使用代理
+cur_proxy = {
+    'http': None,
+    'https': None
+}
+# 访问该网站
+url = 'https://v1.hitokoto.cn/?c=i'
+try:
+    response = requests.get(url, proxies=cur_proxy)
+    print(response)
+    print(response.status_code)
+    print(response.text)  # 整个网页
+    print(type(response.json()))  # <class 'dict'>
+    # ensure_ascii = True 会将中文进行 unicode编码
+    print(json.dumps(response.json(), ensure_ascii=False, indent=4))  # 格式化输出
+except Exception as e:
+    print(f'出现error{e}')
