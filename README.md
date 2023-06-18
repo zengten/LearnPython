@@ -11,6 +11,31 @@
 
 查看包更加详细的介绍 `pip show --verbose packagename`
 
+查看所有安装的包 `pip freeze`
+
+- 将当前环境所有包信息输出到文件中，便于复制安装包到其他环境中
+- 包信息输出到文件中命令`pip freeze > requirements.txt`
+- 其他环境安装清单包命令`pip freeze -r path/to/requirements.txt`
+
+## venv虚拟环境
+
+虚拟环境的出现是为了解决项目之间，包版本依赖以及包冲突问题
+
+使用帮助命令`python -m venv -h`
+
+创建一个虚拟环境，命令`python -m venv testVenv01`
+
+- 创建虚拟环境最好不要指定可选参数，会降低虚拟环境的独立性
+
+此时当前文件夹下会多出一个`testVenv01`虚拟环境目录
+
+进入到该文件夹目录`testVenv01/Scripts/`下
+
+- 输入`activate`命令进入到该虚拟环境
+- 输入`deactivate`命令退出虚拟环境
+
+此时使用`pip install packages`安装的包与系统环境无关
+
 ## 问题
 
 ### pip install numpy报错怎么处理？
@@ -29,5 +54,9 @@
   trusted-host = mirrors.aliyun.com
   ```
 
-  
 
+### pip升级之后，原来版本安装的包，无法卸载/出现警告怎么处理？
+
+- 使用`pip list`或`pip freeze`会出现warning
+
+- 解决：在python包目录`C:\Python39\Lib\site-packages`删掉`~`号开头的文件夹
