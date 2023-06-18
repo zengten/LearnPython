@@ -3,11 +3,20 @@ class Person:
     def __init__(self):
         self.nickname = 'ZhangSan'
 
+    # 这个方法在对象销毁时才调用
+    def __del__(self):
+        print(f'{self.nickname} exec del')
+
+    # str方法一般用于打印对象信息，必须返回一个字符串
+    def __str__(self):
+        return 'nickname=' + self.nickname
+
 
 # 实例化对象
 person = Person()
-print(person)  # <__main__.Person object at 0x0000021945829CA0>
+print(person)  # 输出对象在内存中的地址 <__main__.Person object at 0x0000021945829CA0>
 print(person.nickname)  # ZhangSan
+print(person.__str__())  # nickname=ZhangSan
 
 
 class User:

@@ -52,5 +52,10 @@ print(new_list)  # [1, 3, 4, 5, 9]
 new_list = sorted(my_list, reverse=True)  # 逆序排序
 print(new_list)  # [9, 5, 4, 3, 1]
 
+# 数组遍历 -> enumerate函数：用于在循环中同时获取元素和元素的索引
+names = ['ZhangSan', 'LiSi', 'WangWu']
+for index, name in enumerate(names):
+    print(f'index={index}, name = {name}')
+
 del fruits
 print(fruits)  # name 'fruits' is not defined
