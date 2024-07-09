@@ -42,3 +42,11 @@ def power(_x):
 
 
 print(power(2)(3))  # 2 ** 3 = 8
+
+# 交换数组位置中的元素
+arr = [1, 2, 3, 4, 5]
+for i in range(len(arr)):
+    arr[i], arr[len(arr) - i - 1] = arr[len(arr) - i - 1], arr[i]
+    if i > 1:
+        break
+print(arr) # [5, 4, 3, 2, 1]

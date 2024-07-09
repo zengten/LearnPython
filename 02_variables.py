@@ -19,3 +19,10 @@ print(list(map(int, string)))  # [1, 2, 3, 4]
 
 # 格式化输出 5123.00
 print("%.2f" % 5123)
+
+# 交换两个变量的值
+x = 10
+y = 20
+x, y = y, x
+print(x) # 20
+print(y) # 10
