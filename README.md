@@ -5,6 +5,10 @@
 
 卸载包 `pip uninstall packagename`
 
+安装指定版本包 `pip install packagename==version`
+
+包升级到指定版本 `pip install --upgrade packagename==version`
+
 查看已经安装的包 `pip list`
 
 查看包介绍 `pip show packagename`
