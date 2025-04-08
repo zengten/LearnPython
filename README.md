@@ -19,7 +19,7 @@
 
 - 将当前环境所有包信息输出到文件中，便于复制安装包到其他环境中
 - 包信息输出到文件中命令`pip freeze > requirements.txt`
-- 其他环境安装清单包命令`pip freeze -r path/to/requirements.txt`
+- 其他环境安装清单包命令`pip install -r requirements.txt`
 
 ## pyenv多版本环境
 ### windows版本
@@ -83,6 +83,82 @@ custom_channels:
 创建新环境`conda create --name 环境名称 python=python版本`
 激活环境`conda activate 环境名称`，可能需要使用`conda init`初始化conda
 **上面操作可能需要管理员cmd模式**
+
+## 使用uv管理py环境
+
+官方文档 `https://docs.astral.sh/uv/`
+### 安装uv
+```
+# 使用powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+### 使用uv
+
+```shell
+# 查询所有可安装的python版本
+uv python list
+# 安装指定版本
+uv python install 3.10
+# 安装最新版
+uv install python
+# 通过uv安装的python版本，运行需要使用uv
+uv run .\show_version.py
+# 指定python版本运行
+uv run --python 3.10 .\show_version.py
+# 预设指定版本，然后运行
+uv python pin 3.10
+uv run .\show_version.py
+# 如果py文件中需要安装的包，则可以使用with导入，会临时建立虚拟环境
+uv run --with cowsay .\cow.py
+# 使用上面命令会在本机安装包，包保存路径在下面地址
+uv cache dir
+# 也可以清理本机虚拟环境的包
+uv cache clean
+# 使用多个包
+uv run --with cowsay,rich .\cow_rich.py
+
+```
+### uv虚拟环境
+
+```shell
+# uv创建虚拟环境
+uv venv --python 3.10
+# 将包安装到当前环境
+uv pip install packageName
+# 卸载软件包
+uv pip uninstall packageName
+# 显示已安装软件包的详细信息
+uv pip show
+# 列出已安装的软件包及其版本
+uv pip freeze
+# 检查当前环境是否有兼容的软件包
+uv pip check
+# 列出已安装的软件包
+uv pip list
+# 查看环境的依赖树
+uv pip tree
+
+# 创建一个新的 Python 项目
+uv init <projectName>
+# 向项目添加依赖
+uv add packageName名称
+# 向项目删除依赖
+uv remove packageName名称
+# 同步项目依赖与环境的版本
+uv sync
+```
+### uv tool
+
+```shell
+# 在临时环境中运行工具
+uvx / uv tool run
+# 全局安装工具
+uv tool install
+# 卸载工具
+uv tool uninstall
+# 列出已安装工具
+uv tool list
+```
 
 ## venv虚拟环境
 
